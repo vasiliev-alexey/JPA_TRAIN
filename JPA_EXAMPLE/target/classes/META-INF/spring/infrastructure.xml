@@ -18,7 +18,7 @@
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
 		<property name="username" value="demo"></property>
 		<property name="password" value="demo"></property>
-		<property name="url" value="jdbc:oracle:thin:@revoserv.dyndns-home.com:1521:XE"></property>
+		<property name="url" value="jdbc:oracle:thin:@revo:1521:XE"></property>
 	</bean>
 	<bean id="emf"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
