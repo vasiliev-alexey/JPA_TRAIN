@@ -2,6 +2,7 @@ package com.av.domain;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Generated;
 import javax.persistence.AttributeOverride;
@@ -16,6 +17,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SecondaryTable;
 import javax.persistence.SequenceGenerator;
@@ -44,9 +47,12 @@ public class Employee {
 	private String email;
 	
 	@ElementCollection(targetClass = VacationEntry.class, fetch = FetchType.EAGER)
-	@CollectionTable(name = "EMPLOYEE_VACATIONBOOKINGS" , joinColumns = @JoinColumn(name="employee_id"))
+	@CollectionTable(name = "VACATIONBOOKINGS" , joinColumns = @JoinColumn(name="employee_id"))
+	private List vacationBookings;
 	
-	private Collection vacationBookings;
+	@ManyToOne()
+	@JoinColumn(name = "department_id")
+	private Department dept;
 	
 	  public String getEmail() {
 		return email;
@@ -115,11 +121,11 @@ public class Employee {
 		this.address = address;
 	}
 
-	public Collection getVacationBookings() {
+	public List getVacationBookings() {
 		return vacationBookings;
 	}
 
-	public void setVacationBookings(Collection vacationBookings) {
+	public void setVacationBookings(List vacationBookings) {
 		this.vacationBookings = vacationBookings;
 	}
 

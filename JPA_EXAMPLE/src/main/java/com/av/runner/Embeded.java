@@ -32,6 +32,7 @@ public class Embeded {
 		e.setEmail("tsts");
 		
 		
+		
 		Address a = new Address();
 		a.setCity("Moscow");
 		a.setState("Russia");
