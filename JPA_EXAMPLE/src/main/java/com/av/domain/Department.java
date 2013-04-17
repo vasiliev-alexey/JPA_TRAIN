@@ -13,6 +13,9 @@ import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 @Entity
 @Table(name = "Departments")
 public class Department {
@@ -28,6 +31,7 @@ public class Department {
 
 	@OneToMany(mappedBy = "dept", targetEntity = Employee.class  )
 	@OrderBy("firstName ASC")
+	@LazyCollection(LazyCollectionOption.EXTRA)
 	private List<Employee> emps;
 //////////////////////////////////////////////////
 	public Long getId() {

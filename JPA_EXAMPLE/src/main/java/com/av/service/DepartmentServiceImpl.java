@@ -21,14 +21,14 @@ public class DepartmentServiceImpl implements DepartmentService {
 	private DeptRepository deprep;
 
 	public List<Department> findAll() {
-		
-		ArrayList <Department> dept =  Lists.newArrayList(deprep.findAll());
-		
+
+		ArrayList<Department> dept = Lists.newArrayList(deprep.findAll());
+
 		for (Department d : dept) {
-			if (! Hibernate.isInitialized(d.getEmps()))
-			Hibernate.initialize(d.getEmps());
+			if (!Hibernate.isInitialized(d.getEmps()))
+				Hibernate.initialize(d.getEmps());
 		}
-		
+
 		return dept;
 	}
 
