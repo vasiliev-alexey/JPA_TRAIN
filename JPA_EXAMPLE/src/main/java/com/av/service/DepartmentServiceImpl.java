@@ -25,8 +25,12 @@ public class DepartmentServiceImpl implements DepartmentService {
 		ArrayList<Department> dept = Lists.newArrayList(deprep.findAll());
 
 		for (Department d : dept) {
+			
 			if (!Hibernate.isInitialized(d.getEmps()))
+			{
 				Hibernate.initialize(d.getEmps());
+			//	int i = d.getEmps().size();
+			}
 		}
 
 		return dept;
