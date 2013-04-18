@@ -30,7 +30,7 @@ public class Department {
 	private String deptName;
 
 	@OneToMany(mappedBy = "dept", targetEntity = Employee.class  )
-	@OrderBy("firstName ASC")
+	@OrderBy("firstName DESC")
 	@LazyCollection(LazyCollectionOption.EXTRA)
 	private List<Employee> emps;
 //////////////////////////////////////////////////
@@ -40,8 +40,8 @@ public class Department {
 
 	@Override
 	public String toString() {
-		return "Department [id=" + id + ", deptName=" + deptName + ", emps="
-				+ emps + "]";
+		return "Department [id=" + id + ", deptName=" + deptName + "," + "\n"+ "emps=" + 
+				  emps + "]";
 	}
 
 	public void setId(Long id) {

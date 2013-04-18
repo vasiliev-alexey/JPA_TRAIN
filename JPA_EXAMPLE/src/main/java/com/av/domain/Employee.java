@@ -78,7 +78,7 @@ public class Employee {
 		return "Employee [employee_id=" + employee_id + ", firstName="
 				+ firstName + ", lastName=" + lastName + ", birthDate="
 				+ birthDate + ", email=" + email + ", vacationBookings="
-				+ vacationBookings + ", address=" + address + "]";
+				+ vacationBookings + ", address=" + address + "]" + "\n";
 	}
 
 	public Long getEmployee_id() {

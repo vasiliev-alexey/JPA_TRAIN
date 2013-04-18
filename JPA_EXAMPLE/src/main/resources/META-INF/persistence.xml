@@ -7,6 +7,8 @@
 		<class>com.av.domain.Department</class> 
  		<class>com.av.domain.Employee</class> 
  		<class>com.av.domain.VacationEntry</class>
+ 		<class>com.av.domain.PrintQueue</class>
+ 		<class>com.av.domain.PrintJob</class>
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 
 	</persistence-unit>
