@@ -16,10 +16,15 @@ public class PrintQueueTest {
 	public static void fillJobs(PrintQueue q) {
 	
 		List<PrintJob> jobs = new ArrayList <PrintJob>();
-		jobs.add(new PrintJob("Job 5"));
-		jobs.add(new PrintJob("Job 2"));
-		jobs.add(new PrintJob("Job 4"));
-		jobs.add(new PrintJob("Job 1"));
+	//	PrintJob job = new PrintJob("Job 5");
+		
+		for (int i = 0; i < 5; i++) {
+			PrintJob job = new PrintJob("Job " + i);
+			job.setQueue(q);
+			jobs.add(job);
+		}
+			
+		
 		q.setJobs(jobs);
 	}
 	
@@ -40,6 +45,8 @@ public class PrintQueueTest {
 		
 		fillJobs(q1);
 		fillJobs(q2);
+		
+		System.out.println(q1);
 		
 		System.out.println(q1);
 		

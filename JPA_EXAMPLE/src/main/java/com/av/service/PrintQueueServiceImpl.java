@@ -23,32 +23,30 @@ public class PrintQueueServiceImpl implements PrintQueueService {
 
 	@Autowired
 	EntityManagerFactory emf;
-	
+
 	public List<PrintQueue> findAll() {
 
 		return Lists.newArrayList(rep.findAll());
 	}
 
 	public PrintQueue save(PrintQueue q) {
-
-		EntityManager manger = emf.createEntityManager();
-	//	emf.createEntityManager().merge(q);
-		manger.getTransaction().begin();
-		
-		manger.merge(q);
-		manger.persist(q);
-		manger.refresh(q);
-		
-		for (PrintJob pj : q.getJobs()) {
-			manger.persist(pj);
-		}
-		
-		
 	
+		 EntityManager manger = emf.createEntityManager();
+		 emf.createEntityManager();
+		 manger.getTransaction().begin();
+
+	
+		 manger.persist(q);
+		
+		// manger.refresh(q);
+		//
+		// for (PrintJob pj : q.getJobs()) {
+		// manger.persist(pj);
+		// }
+
 		manger.getTransaction().commit();
-		 return q;
-		 
-		 
+		return q;
+
 	}
 
 	public void deleteAll() {
