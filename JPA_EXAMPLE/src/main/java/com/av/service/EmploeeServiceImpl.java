@@ -36,4 +36,9 @@ public class EmploeeServiceImpl implements EmployeeService {
 		rep.delete(id);
 	}
 
+	public Employee findByLastName(String lastName) {
+		
+		return rep.findByLastName(lastName);
+	}
+
 }

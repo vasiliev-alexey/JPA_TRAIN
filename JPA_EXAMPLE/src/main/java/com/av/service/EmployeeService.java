@@ -11,4 +11,6 @@ public interface EmployeeService {
 	public Employee Save(Employee emp);
 	
 	public void remove(Long id);
+	
+	public Employee findByLastName(String lastName);
 }

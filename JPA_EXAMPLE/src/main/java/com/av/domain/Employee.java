@@ -4,10 +4,12 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Generated;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -20,6 +22,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.MapKeyEnumerated;
@@ -98,13 +102,25 @@ public class Employee {
 			@AttributeOverride(name = "zip", column = @Column(name = "ZIP", table = "ADDRESS")) })
 	private Address address;
 
+	@ManyToMany( targetEntity = Project.class , fetch = FetchType.EAGER )
+	@JoinTable(name = "T_PROJECT_EMP" , inverseJoinColumns = @JoinColumn(name ="PROJECT_ID") , joinColumns =@JoinColumn(name= "EMPLOYEE_ID"))
+	Set <Project> projects;
+	
+	public Set<Project> getProjects() {
+		return projects;
+	}
+
+	public void setProjects(Set<Project> projects) {
+		this.projects = projects;
+	}
+
 	@Override
 	public String toString() {
 		return "Employee [employee_id=" + employee_id + ", firstName="
 				+ firstName + ", lastName=" + lastName + ", birthDate="
 				+ birthDate + ", email=" + email + ", vacationBookings="
 				+ vacationBookings + ", phones=" + phones + ", address="
-				+ address + "]";
+				+ address + ", projects=" + projects + "]";
 	}
 
 	public Long getEmployee_id() {

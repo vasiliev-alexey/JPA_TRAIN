@@ -9,6 +9,7 @@
  		<class>com.av.domain.VacationEntry</class>
  		<class>com.av.domain.PrintQueue</class>
  		<class>com.av.domain.PrintJob</class>
+ 		<class>com.av.domain.Project</class>
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 
 	</persistence-unit>

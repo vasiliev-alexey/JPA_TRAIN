@@ -6,4 +6,5 @@ import com.av.domain.Employee;
 
 public interface EmployeeRepository extends CrudRepository<Employee, Long> {
 
+	public Employee findByLastName(String lastName);
 }
