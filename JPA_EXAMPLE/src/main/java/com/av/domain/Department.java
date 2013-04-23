@@ -41,7 +41,7 @@ public class Department {
 	@Override
 	public String toString() {
 		return "Department [id=" + id + ", deptName=" + deptName + "," + "\n"+ "emps=" + 
-				  emps + "]";
+				  emps.size() + "]";
 	}
 
 	public void setId(Long id) {

@@ -53,6 +53,8 @@ public class Employee {
 	private Date birthDate;
 	@Column(name = "EMAIL")
 	private String email;
+	@Column(name = "Salary")
+	private double salary;
 
 	@ElementCollection(targetClass = VacationEntry.class, fetch = FetchType.EAGER)
 	@CollectionTable(name = "VACATIONBOOKINGS", joinColumns = @JoinColumn(name = "employee_id"))
@@ -102,10 +104,10 @@ public class Employee {
 			@AttributeOverride(name = "zip", column = @Column(name = "ZIP", table = "ADDRESS")) })
 	private Address address;
 
-	@ManyToMany( targetEntity = Project.class , fetch = FetchType.EAGER )
-	@JoinTable(name = "T_PROJECT_EMP" , inverseJoinColumns = @JoinColumn(name ="PROJECT_ID") , joinColumns =@JoinColumn(name= "EMPLOYEE_ID"))
-	Set <Project> projects;
-	
+	@ManyToMany(targetEntity = Project.class, fetch = FetchType.EAGER)
+	@JoinTable(name = "T_PROJECT_EMP", inverseJoinColumns = @JoinColumn(name = "PROJECT_ID"), joinColumns = @JoinColumn(name = "EMPLOYEE_ID"))
+	Set<Project> projects;
+
 	public Set<Project> getProjects() {
 		return projects;
 	}
@@ -118,9 +120,10 @@ public class Employee {
 	public String toString() {
 		return "Employee [employee_id=" + employee_id + ", firstName="
 				+ firstName + ", lastName=" + lastName + ", birthDate="
-				+ birthDate + ", email=" + email + ", vacationBookings="
-				+ vacationBookings + ", phones=" + phones + ", address="
-				+ address + ", projects=" + projects + "]";
+				+ birthDate + ", email=" + email + ", salary=" + salary
+				+ ", vacationBookings=" + vacationBookings + ", dept=" + dept
+				+ ", phones=" + phones + ", address=" + address + ", projects="
+				+ projects + "]";
 	}
 
 	public Long getEmployee_id() {
@@ -169,6 +172,14 @@ public class Employee {
 
 	public void setVacationBookings(List vacationBookings) {
 		this.vacationBookings = vacationBookings;
+	}
+
+	public double getSalary() {
+		return salary;
+	}
+
+	public void setSalary(double salary) {
+		this.salary = salary;
 	}
 
 }
