@@ -52,50 +52,75 @@ public class QueryTester {
 
 		EntityManager em = emf.createEntityManager();
 
-		if (1==2) {
-		// TypedQuery<Employee> q =
-		// em.createQuery("select e.firstName , e.dept.deptName from Employee e ",
-		// Employee.class);
-		Query q = em
-				.createQuery("select e.firstName , e.salary from Employee e ");
-		List o = q.getResultList();
+		if (1 == 2) {
+			// TypedQuery<Employee> q =
+			// em.createQuery("select e.firstName , e.dept.deptName from Employee e ",
+			// Employee.class);
+			Query q = em
+					.createQuery("select e.firstName , e.salary from Employee e ");
+			List o = q.getResultList();
 
+			try {
+				if (o.size() > 0) {
+					int count = 0;
+					for (Object object : o) {
+						printResult(object);
+					}
+				} else {
+					System.out.println("0 results returned");
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		TypedQuery<EmployeeDetails> query = em
+				.createQuery(
+						"select NEW com.av.domain.reportsentity.EmployeeDetails(e.firstName , e.salary , e.dept.deptName) from Employee e ",
+						EmployeeDetails.class);
+
+		List<EmployeeDetails> listRep = query.getResultList();
+
+		for (EmployeeDetails employeeDetails : listRep) {
+			System.out.println(employeeDetails);
+		}
+
+		System.out.println("------------------------------------------");
+
+		// TypedQuery<Department> q1 = em.createQuery(
+		// "select distinct d from Department d left join fetch d.emps",
+		// Department.class);
+		TypedQuery<Department> q1 = em
+				.createQuery(
+						"select distinct d from Department d where (select count(e) from d.emps e)> 0  order by d.emps.size desc",
+						Department.class);
+		List<Department> dlist = q1.getResultList();
+
+		for (Department department : dlist) {
+			System.out.println(department);
+		}
+		System.out.println("------------------------------------------");
+
+		Query q2 = em.createQuery("select d.deptName , avg(e.salary) "
+				+ "from Department d join d.emps e "
+				+ "group by d.deptName having avg(e.salary) > 5000");
+
+		List o = q2.getResultList();
 		try {
 			if (o.size() > 0) {
 				int count = 0;
 				for (Object object : o) {
 					printResult(object);
 				}
-			}
-			else {
+			} else {
 				System.out.println("0 results returned");
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		}
-		
-		
-	TypedQuery<EmployeeDetails> query = em.createQuery("select NEW com.av.domain.reportsentity.EmployeeDetails(e.firstName , e.salary , e.dept.deptName) from Employee e " , EmployeeDetails.class);
-	
-	List <EmployeeDetails> listRep = query.getResultList();
-	
-	for (EmployeeDetails employeeDetails : listRep) {
-		System.out.println(employeeDetails);
-	}
-	
-	System.out.println("------------------------------------------");
-	
-	TypedQuery<Department> q1 = em.createQuery("select distinct d from Department d left join fetch d.emps", Department.class);
-	List <Department> dlist = q1.getResultList();
-	
-	for (Department department : dlist) {
-		System.out.println(department);
-	}
-	
-	
-	
+
 	}
 
 }

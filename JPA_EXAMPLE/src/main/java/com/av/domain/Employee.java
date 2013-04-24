@@ -54,7 +54,7 @@ public class Employee {
 	@Column(name = "EMAIL")
 	private String email;
 	@Column(name = "Salary")
-	private double salary;
+	private Double salary;
 
 	@ElementCollection(targetClass = VacationEntry.class, fetch = FetchType.EAGER)
 	@CollectionTable(name = "VACATIONBOOKINGS", joinColumns = @JoinColumn(name = "employee_id"))
