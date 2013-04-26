@@ -19,7 +19,7 @@ import com.av.domain.reportsentity.EmployeeDetails;
 
 public class QueryTester {
 
-	private static void printResult(Object result) throws Exception {
+	public static void printResult(Object result) throws Exception {
 		if (result == null) {
 			System.out.print("NULL");
 		} else if (result instanceof Object[]) {
