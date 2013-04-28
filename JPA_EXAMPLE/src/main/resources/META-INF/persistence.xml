@@ -4,12 +4,16 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
 	version="1.0">
 	<persistence-unit name="application" transaction-type="RESOURCE_LOCAL">
-		<class>com.av.domain.Department</class> 
- 		<class>com.av.domain.Employee</class> 
- 		<class>com.av.domain.VacationEntry</class>
- 		<class>com.av.domain.PrintQueue</class>
- 		<class>com.av.domain.PrintJob</class>
- 		<class>com.av.domain.Project</class>
+		<class>com.av.domain.Department</class>
+		<class>com.av.domain.Employee</class>
+		<class>com.av.domain.VacationEntry</class>
+		<class>com.av.domain.PrintQueue</class>
+		<class>com.av.domain.PrintJob</class>
+		<class>com.av.domain.Project</class>
+		<class>com.av.domain.Emp</class>
+		<class>com.av.domain.ContractEmp</class>
+		<class>com.av.domain.StaffEmp</class>
+
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 
 	</persistence-unit>
