@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.EntityResult;
 import javax.persistence.FieldResult;
 import javax.persistence.GeneratedValue;
@@ -15,6 +16,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.PostLoad;
+import javax.persistence.PostPersist;
+import javax.persistence.PostRemove;
+import javax.persistence.PostUpdate;
+import javax.persistence.PrePersist;
+import javax.persistence.PreRemove;
+import javax.persistence.PreUpdate;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.SqlResultSetMapping;
 import javax.persistence.SqlResultSetMappings;
@@ -22,8 +30,11 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.av.service.TestListener;
+
 @Entity
 @Table(name = "Emps")
+@EntityListeners(TestListener.class)
 @Inheritance(strategy = InheritanceType.JOINED)
 //@DiscriminatorColumn(name = "Emp_Type", discriminatorType = DiscriminatorType.STRING)
 @SqlResultSetMapping(name = "XXX", entities = @EntityResult(//discriminatorColumn = "Emp_Type", 
@@ -126,4 +137,6 @@ public class Emp {
 		return true;
 	}
 
+
+	
 }
