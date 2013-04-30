@@ -34,14 +34,14 @@ public class InhirTest {
 	//	em.remove(em.find(ContractEmp.class, new Long(400)));
 		
 		e.setContract("TSTS1");
-		e.setName("TestEmployee");
+		e.setSname("TestEmployee");
 		e.setSalary(1000f);
 		e.setsDate(new Date());
 	
 	
 		
 		StaffEmp se = new  StaffEmp();
-		se.setName("StaffTest");
+		se.setSname("StaffTest");
 		se.setRoom("3");
 		se.setSalary(1234f);
 		se.setsDate(new Date());

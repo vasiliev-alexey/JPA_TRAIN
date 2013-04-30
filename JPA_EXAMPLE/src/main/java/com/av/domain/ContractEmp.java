@@ -50,7 +50,7 @@ public class ContractEmp extends Emp {
 	public String toString() {
 		return "ContractEmp [contract=" + contract + ", getSalary()="
 				+ getSalary() + ", getId()=" + getId() + ", getName()="
-				+ getName() + ", getsDate()=" + getsDate() + "]";
+				+ getSname() + ", getsDate()=" + getsDate() + "]";
 	}
 	
 	
