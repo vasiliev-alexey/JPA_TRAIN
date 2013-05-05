@@ -14,6 +14,7 @@ public abstract class Emp_ {
 	public static volatile SingularAttribute<Emp, Float> salary;
 	public static volatile SingularAttribute<Emp, String> sname;
 	public static volatile SingularAttribute<Emp, Date> sDate;
+	public static volatile SingularAttribute<Emp, Integer> version;
 
 }
 

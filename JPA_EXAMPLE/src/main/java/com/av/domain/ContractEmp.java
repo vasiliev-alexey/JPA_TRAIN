@@ -4,12 +4,13 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+
 @Entity
-@DiscriminatorValue (value = "ContractEmp")
-@Table(name= "CONTRACT_EMP")
+@DiscriminatorValue(value = "ContractEmp")
+@Table(name = "CONTRACT_EMP")
 public class ContractEmp extends Emp {
 
-	@Column(name = "CONTRACT_NUM" )
+	@Column(name = "CONTRACT_NUM")
 	private String contract;
 
 	public String getContract() {
@@ -49,9 +50,8 @@ public class ContractEmp extends Emp {
 	@Override
 	public String toString() {
 		return "ContractEmp [contract=" + contract + ", getSalary()="
-				+ getSalary() + ", getId()=" + getId() + ", getName()="
-				+ getSname() + ", getsDate()=" + getsDate() + "]";
+				+ getSalary() + ", getId()=" + getId() + ", getsDate()="
+				+ getsDate() + "]";
 	}
-	
-	
+
 }

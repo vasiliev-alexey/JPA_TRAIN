@@ -1,23 +1,19 @@
 package com.av.tests;
 
-import java.util.Date;
 import java.util.Locale;
-
+import java.util.Date;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.LockModeType;
 
 import org.apache.log4j.BasicConfigurator;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
 import com.av.domain.Emp;
 
-public class LifecycleTest {
+public class VersionTest {
 
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		Locale.setDefault(Locale.US);
 		BasicConfigurator.configure();
 		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
@@ -28,29 +24,46 @@ public class LifecycleTest {
 		EntityManager em = emf.createEntityManager();
 
 		Emp e = new Emp();
-
-		e.setSalary(100f);
+		e.setSalary(10000f);
 		e.setsDate(new Date());
-		e.setSname("sddd");
 
 		em.getTransaction().begin();
+
 		em.persist(e);
 		em.getTransaction().commit();
 
-		em.getTransaction().begin();
 		e.setSalary(200f);
+		System.out.println(e);
+
+		em.getTransaction().begin();
+
 		em.persist(e);
 		em.getTransaction().commit();
-
-		
+		System.out.println(e);
+		//
 		em.getTransaction().begin();
-		em.refresh(e);
-		em.getTransaction().commit();
+	//	em.lock(e, LockModeType.OPTIMISTIC_FORCE_INCREMENT);
 		
-		em.getTransaction().begin();
-		em.remove(e);
+		try {
+			Thread.currentThread().sleep(20000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		em.getTransaction().commit();
 
+		e.setSname("New Name");
+
+		try {
+			em.getTransaction().begin();
+			em.persist(e);
+			em.getTransaction().commit();
+			System.out.println(e);
+		} catch (Exception e1) {
+			System.out.println("=========================");
+			System.out.println(e1.getCause());
+			e1.printStackTrace();
+		}
 	}
 
 }

@@ -30,39 +30,45 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 import com.av.service.TestListener;
 
 @Entity
 @Table(name = "Emps")
 @EntityListeners(TestListener.class)
-@Inheritance(strategy = InheritanceType.JOINED)
-//@DiscriminatorColumn(name = "Emp_Type", discriminatorType = DiscriminatorType.STRING)
-@SqlResultSetMapping(name = "XXX", entities = @EntityResult(//discriminatorColumn = "Emp_Type", 
-entityClass = Emp.class, fields = {
+@SqlResultSetMapping(name = "ValidEmp", entities = @EntityResult(
+entityClass = ValidEmp.class, fields = {
 		@FieldResult(name = "id", column = "EMPLOYEE_ID"),
 		@FieldResult(name = "sname", column = "dddd"),
 		@FieldResult(name = "sDate", column = "S_DATE"),
 		@FieldResult(name = "salary", column = "SALARY")}
 
 ))
-public class Emp {
+public class ValidEmp {
 
 	@Id
 	@SequenceGenerator(name = "emps_seq", sequenceName = "emps_seq")
 	@GeneratedValue(generator = "emps_seq", strategy = GenerationType.SEQUENCE)
 	@Column(name = "EMPLOYEE_ID")
+	@NotNull
 	private BigDecimal id;
+	
 	@Column(name = "S_NAME")
+	@NotNull(message = "Employee name cannnot  be NULL")
 	private String sname;
 	@Column(name = "S_DATE")
+	@Future
 	@Temporal(TemporalType.DATE)
 	private Date sDate;
+	
+	@Min(value = 1000  , message =" more then 1000 $")
 	@Column(name = "SALARY")
 	private Float salary;
 
-	@Version()
-	@Column(name = "VERSION")
+	@Version
 	private int version;
 	// private String empType;
 
@@ -100,8 +106,8 @@ public class Emp {
 
 	@Override
 	public String toString() {
-		return "Emp [id=" + id + ", sname=" + sname + ", sDate=" + sDate
-				+ ", salary=" + salary + ", version=" + version + "]";
+		return "Emp [id=" + id + ", name=" + sname + ", sDate=" + sDate
+				+ ", salary=" + salary + "]";
 	}
 
 	@Override
@@ -122,7 +128,7 @@ public class Emp {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Emp other = (Emp) obj;
+		ValidEmp other = (ValidEmp) obj;
 		if (sname == null) {
 			if (other.sname != null)
 				return false;

@@ -11,6 +11,7 @@
 		<class>com.av.domain.PrintJob</class>
 		<class>com.av.domain.Project</class>
 		<class>com.av.domain.Emp</class>
+		<class>com.av.domain.ValidEmp</class>
 <!-- 		<class>com.av.domain.ContractEmp</class>
 		<class>com.av.domain.StaffEmp</class> -->
 

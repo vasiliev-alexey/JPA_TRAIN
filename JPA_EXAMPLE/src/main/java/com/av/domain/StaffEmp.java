@@ -49,8 +49,7 @@ public class StaffEmp extends Emp {
 	@Override
 	public String toString() {
 		return "StaffEmp [room=" + room + ", getSalary()=" + getSalary()
-				+ ", getId()=" + getId() + ", getName()=" + getSname() + "]";
+				+ ", getId()=" + getId() + "]";
 	}
-	
-	
+
 }
