@@ -15,13 +15,13 @@ import javax.persistence.Table;
 @Access(AccessType.FIELD)
 public class EM {
 
-	String name;
+	private String name;
 
 	@Id
 	@SequenceGenerator(name = "MAP_EMP_SEQ", sequenceName = "MAP_EMP_SEQ")
 	@GeneratedValue(generator = "MAP_EMP_SEQ", strategy = GenerationType.SEQUENCE)
 	@Column(name = "EMPLOYEE_ID")
-	Long id;
+	private Long id;
 
 	// ////////////////////////////////////////
 	public String getName() {
