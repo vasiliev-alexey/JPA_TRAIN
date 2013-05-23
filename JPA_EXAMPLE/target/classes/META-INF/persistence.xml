@@ -14,6 +14,8 @@
 		<class>com.av.domain.EM</class>
 		<class>com.av.domain.De</class>
 		<class>com.av.domain.ValidEmp</class>
+		<class>com.av.domain.Car</class>
+		<class>com.av.domain.Wheel</class>
 <!-- 		<class>com.av.domain.ContractEmp</class>
 		<class>com.av.domain.StaffEmp</class> -->
 
